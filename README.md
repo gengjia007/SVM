@@ -3,4 +3,6 @@
 ### 用到的工具：
     opencv
     numpy
-    * sklearn
+    sklearn
+### 一、首先获取数据集
+        
