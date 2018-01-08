@@ -65,7 +65,7 @@ pca = PCA(n_components=15, svd_solver='randomized').fit(x_train)
 这里我指定了pca分析后特征向量保留了15个主要维度。
 
 
-##未完待续
+## 未完待续
 
 
 
