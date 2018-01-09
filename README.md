@@ -33,6 +33,7 @@ def ImageConvert():
 
 生成特征向量矩阵：
 ```python
+import numpy as np
 C_data = np.array(data)
 C_label = np.array(label)
 ```
@@ -44,6 +45,7 @@ print(C_data.shape)
 
 ### 三、分割数据集
 ```python
+from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(C_data, C_label, test_size=0.2, random_state=256)
 ```
 这里我指定了测试集占20%.
@@ -55,7 +57,8 @@ x_train, x_test, y_train, y_test = train_test_split(C_data, C_label, test_size=0
 。
 这里引入sklearn工具进行pca处理：
 ```python
-pca = PCA(n_components=15, svd_solver='randomized').fit(x_train)
+from sklearn.decomposition import PCA
+pca = PCA(n_components=15, svd_solver='auto').fit(x_train)
 ```
 这里对PCA（）的主要参数进行一下介绍：
 （1）n_components：这里指我们希望经过pca处理后保留的特征维度。
@@ -63,9 +66,26 @@ pca = PCA(n_components=15, svd_solver='randomized').fit(x_train)
 （3）whiten ：判断是否进行白化。所谓白化，就是对降维后的数据的每个特征进行归一化，让方差都为1.
 
 这里我指定了pca分析后特征向量保留了15个主要维度。
+```python
+x_train_pca = pca.transform(x_train)
+x_test_pca = pca.transform(x_test)
+```
 
+### 五、SVM分类
+这里使用的sklearn中的svm工具包，opencv中也封装了svm，这里看个人喜好使用。
+```python
+from sklearn.svm import SVC
+svc = SVC(kernel='linear')
+svc.fit(x_train_pca, y_train)
+```
+这里采用了线性核函数进行计算。
 
-## 未完待续
+### 六、查看训练后的分类结果
+```python
+print('%.5f' % svc.score(x_test_pca, y_test))
+```
+正确率：
+
 
 
 
