@@ -84,9 +84,9 @@ svc.fit(x_train_pca, y_train)
 ```python
 print('%.5f' % svc.score(x_test_pca, y_test))
 ```
+
 正确率：
 ![](https://github.com/gengjia007/SVM/blob/master/result.png)
-这里的训练结果是在n_components=15的情况下得出
 
 当n_components=10时，正确率为：
 ![](https://github.com/gengjia007/SVM/blob/master/result1.png)
