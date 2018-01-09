@@ -51,10 +51,7 @@ x_train, x_test, y_train, y_test = train_test_split(C_data, C_label, test_size=0
 这里我指定了测试集占20%.
 
 ### 四、PCA主成分分析，降维处理
-这里pca分析是通过计算协方差矩阵，找出影响特征的主要因素，em....举个简单例子来说明吧：
-。
-。
-。
+这里pca分析是通过计算协方差矩阵，找出影响特征的主要因素：
 这里引入sklearn工具进行pca处理：
 ```python
 from sklearn.decomposition import PCA
